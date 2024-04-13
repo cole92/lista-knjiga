@@ -1,0 +1,22 @@
+body {
+    background: #2c646d;
+    color: #fff;
+}
+.success, .error {
+    color: white;
+    padding: 5px;
+    margin: 5px 0 15px 0;
+}
+
+#book-form > div:nth-child(4) > input {
+    color: #fff !important;
+    background: #672a85;
+}
+
+.success{
+    background: green;
+}
+
+.error{
+    background: red;
+}
