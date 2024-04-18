@@ -61,17 +61,35 @@ document.getElementById('book-form').addEventListener('submit', (e) => {
     const ui = new UI();
 
     if(title === '' || author === '' || isbn ==='') {
-        ui.showAlert('Niste popunili sva polja', 'error')
+        ui.showAlert('Niste popunili sva polja', 'error');
     } else {
         ui.addBookToList(book);
-        ui.showAlert('Uspesno ste dodali knjigu!', 'success')
+        ui.showAlert('Uspesno ste dodali knjigu!', 'success');
+        ui.clearFields();
     }
 
+})
+// Listener za delete
+document.getElementById('book-list').addEventListener('click', e => {
+    e.preventDefault();
+    const ui = new UI();
+    ui.showAlert('Uspesno ste obrisali knjigu!', 'error')
+    ui.deleteBook(e.target)
 })
 
 
 
 
 // Probamo da sredimo da ne moze dve iste knjige.
-// Da sredimo X
-// Neki local storage.
+// Neki local storage da sacuva knjige.
+
+/*  - Refaktorisanje: Razmislite o izdvajanju logike za kreiranje novog reda (tr) i dodavanje u DOM u zasebnu funkciju,
+    unutar klase UI za veću čitljivost i ponovnu upotrebu.
+    
+    - Poboljšanje korisničkog interfejsa:
+        Razmislite o dodavanju funkcionalnosti za uređivanje postojećih unosa knjiga.
+        Poboljšajte stilizaciju alert divova; na primer, da poruka bude bliža korisniku kada se pojavi, može se dodati tranzicija ili animacija.
+
+    - Optimizacija:
+    Iako se novi objekat UI kreira svaki put kada se forma submituje,
+    možete razmisliti o kreiranju jednog objekta UI van event listenera i ponovnoj upotrebi, jer UI ne čuva stanje koje bi se promenilo između zahteva. */
