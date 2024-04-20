@@ -84,15 +84,15 @@ document.getElementById('book-form').addEventListener('submit', (e) => {
 // Listener za delete
 document.getElementById('book-list').addEventListener('click', e => {
     e.preventDefault();
-    const ui = new UI();
-    ui.showAlert('Uspesno ste obrisali knjigu!', 'error')
-    ui.deleteBook(e.target)
+    if (e.target.className === 'delete') {
+        const ui = new UI();
+        ui.showAlert('Uspesno ste obrisali knjigu!', 'success')
+        ui.deleteBook(e.target);
+    }
+    
 })
 
 
-
-
-// Neki local storage da sacuva knjige probahhh.
 
 /*  
     - Poboljšanje korisničkog interfejsa:
