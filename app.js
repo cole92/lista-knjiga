@@ -26,6 +26,11 @@ class UI {
         const row = this.createBookRow(book);
         list.appendChild(row)
     }
+    isBookExists(isbn) {
+        const list = document.getElementById('book-list');
+        const rows = list.querySelectorAll('tr');
+        return Array.from(rows).some(row => row.cells[2].textContent === isbn);
+    }
     // kreiranje metode showAlert klase UI
     showAlert(message, className) {
         const div = document.createElement('div');
@@ -67,6 +72,8 @@ document.getElementById('book-form').addEventListener('submit', (e) => {
 
     if(title === '' || author === '' || isbn ==='') {
         ui.showAlert('Niste popunili sva polja', 'error');
+    } else if (ui.isBookExists(isbn)) {
+        ui.showAlert('Knjiga sa ovim ISBN-om vec postoji!', 'error');
     } else {
         ui.addBookToList(book);
         ui.showAlert('Uspesno ste dodali knjigu!', 'success');
@@ -85,11 +92,9 @@ document.getElementById('book-list').addEventListener('click', e => {
 
 
 
-// Probamo da sredimo da ne moze dve iste knjige.
 // Neki local storage da sacuva knjige.
 
 /*  
-    
     - Poboljšanje korisničkog interfejsa:
         Razmislite o dodavanju funkcionalnosti za uređivanje postojećih unosa knjiga.
         Poboljšajte stilizaciju alert divova; na primer, da poruka bude bliža korisniku kada se pojavi, može se dodati tranzicija ili animacija.
