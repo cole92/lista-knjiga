@@ -92,7 +92,7 @@ document.getElementById('book-list').addEventListener('click', e => {
 
 
 
-// Neki local storage da sacuva knjige proba.
+// Neki local storage da sacuva knjige probahhh.
 
 /*  
     - Poboljšanje korisničkog interfejsa:
