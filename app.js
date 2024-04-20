@@ -9,9 +9,8 @@ class Book {
 }
 // kreiranje klase UI
 class UI {
-    // kreiranje metode addBookTolist klase UI
-    addBookToList(book) {
-        const list = document.getElementById('book-list');
+    // Metoda za kreiranje reda
+    createBookRow(book) {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${book.title}</td>
@@ -19,7 +18,13 @@ class UI {
             <td>${book.isbn}</td>
             <td><a href="" class="delete">X</a></td>
         `;
-        list.appendChild(row);
+        return row;
+    }
+    // Metoda za dodavanje knjige u listu
+    addBookToList(book) {
+        const list = document.getElementById('book-list');
+        const row = this.createBookRow(book);
+        list.appendChild(row)
     }
     // kreiranje metode showAlert klase UI
     showAlert(message, className) {
@@ -83,8 +88,7 @@ document.getElementById('book-list').addEventListener('click', e => {
 // Probamo da sredimo da ne moze dve iste knjige.
 // Neki local storage da sacuva knjige.
 
-/*  - Refaktorisanje: Razmislite o izdvajanju logike za kreiranje novog reda (tr) i dodavanje u DOM u zasebnu funkciju,
-    unutar klase UI za veću čitljivost i ponovnu upotrebu.
+/*  
     
     - Poboljšanje korisničkog interfejsa:
         Razmislite o dodavanju funkcionalnosti za uređivanje postojećih unosa knjiga.
