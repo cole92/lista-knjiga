@@ -87,8 +87,9 @@ document.getElementById('book-list').addEventListener('click', e => {
     e.preventDefault();
     if (e.target.className === 'delete') {
         const ui = new UI();
-        ui.showAlert('Uspesno ste obrisali knjigu!', 'success')
         ui.deleteBook(e.target);
+        Storage.removeBook(e.target.parentElement.previousElementSibling.textContent);        
+        ui.showAlert('Uspesno ste obrisali knjigu!', 'success')
     }
     
 })
@@ -113,9 +114,10 @@ class Storage {
 }
 // eListener za storage
 document.addEventListener('DOMContentLoaded', () => {
+    const ui = new UI();
     const books = Storage.getBooks();
     books.forEach(book => ui.addBookToList(new Book(book.title, book.author, book.isbn)));
-});             // OVDE SMO 
+});
 
 
 /*  
