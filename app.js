@@ -68,8 +68,6 @@ document.getElementById('book-form').addEventListener('submit', (e) => {
     const book = new Book (title, author, isbn);
     console.log(book);
 
-    const ui = new UI();
-
     if(title === '' || author === '' || isbn ==='') {
         ui.showAlert('Niste popunili sva polja', 'error');
     } else if (ui.isBookExists(isbn)) {
@@ -86,7 +84,6 @@ document.getElementById('book-form').addEventListener('submit', (e) => {
 document.getElementById('book-list').addEventListener('click', e => {
     e.preventDefault();
     if (e.target.className === 'delete') {
-        const ui = new UI();
         ui.deleteBook(e.target);
         Storage.removeBook(e.target.parentElement.previousElementSibling.textContent);        
         ui.showAlert('Uspesno ste obrisali knjigu!', 'success')
@@ -112,9 +109,11 @@ class Storage {
         localStorage.setItem('books', JSON.stringify(filteredBooks));
     }
 }
+// Globalni UI(optimizacija)
+const ui = new UI();
+
 // eListener za storage
 document.addEventListener('DOMContentLoaded', () => {
-    const ui = new UI();
     const books = Storage.getBooks();
     books.forEach(book => ui.addBookToList(new Book(book.title, book.author, book.isbn)));
 });
