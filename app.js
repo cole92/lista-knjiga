@@ -76,6 +76,7 @@ document.getElementById('book-form').addEventListener('submit', (e) => {
         ui.showAlert('Knjiga sa ovim ISBN-om vec postoji!', 'error');
     } else {
         ui.addBookToList(book);
+        Storage.addBook(book) // Dodavanje knjige u storage
         ui.showAlert('Uspesno ste dodali knjigu!', 'success');
         ui.clearFields();
     }
@@ -86,12 +87,37 @@ document.getElementById('book-list').addEventListener('click', e => {
     e.preventDefault();
     if (e.target.className === 'delete') {
         const ui = new UI();
-        ui.showAlert('Uspesno ste obrisali knjigu!', 'success')
         ui.deleteBook(e.target);
+        Storage.removeBook(e.target.parentElement.previousElementSibling.textContent);        
+        ui.showAlert('Uspesno ste obrisali knjigu!', 'success')
     }
     
 })
+// Local Storage
+class Storage {
+    static getBooks() {
+        let books = localStorage.getItem('books');
+        return books ? JSON.parse(books) : [];
+    };
 
+    static addBook(book) {
+        const books = Storage.getBooks();
+        books.push(book);
+        localStorage.setItem('books', JSON.stringify(books));
+    };
+
+    static removeBook(isbn) {
+        const books = Storage.getBooks();
+        const filteredBooks = books.filter(book => book.isbn !== isbn);
+        localStorage.setItem('books', JSON.stringify(filteredBooks));
+    }
+}
+// eListener za storage
+document.addEventListener('DOMContentLoaded', () => {
+    const ui = new UI();
+    const books = Storage.getBooks();
+    books.forEach(book => ui.addBookToList(new Book(book.title, book.author, book.isbn)));
+});
 
 
 /*  
