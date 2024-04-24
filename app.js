@@ -16,7 +16,10 @@ class UI {
             <td>${book.title}</td>
             <td>${book.author}</td>
             <td>${book.isbn}</td>
-            <td><a href="" class="delete">X</a></td>
+            <td>
+            <a href="#" class="edit">Izmeni</a>
+            <a href="" class="delete">X</a>
+            </td>
         `;
         return row;
     }
@@ -122,8 +125,4 @@ document.addEventListener('DOMContentLoaded', () => {
 /*  
     - Poboljšanje korisničkog interfejsa:
         Razmislite o dodavanju funkcionalnosti za uređivanje postojećih unosa knjiga.
-        Poboljšajte stilizaciju alert divova; na primer, da poruka bude bliža korisniku kada se pojavi, može se dodati tranzicija ili animacija.
-
-    - Optimizacija:
-    Iako se novi objekat UI kreira svaki put kada se forma submituje,
-    možete razmisliti o kreiranju jednog objekta UI van event listenera i ponovnoj upotrebi, jer UI ne čuva stanje koje bi se promenilo između zahteva. */
+        Poboljšajte stilizaciju alert divova; na primer, da poruka bude bliža korisniku kada se pojavi, može se dodati tranzicija ili animacija.  */
