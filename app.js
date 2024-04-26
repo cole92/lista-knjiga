@@ -29,20 +29,31 @@ class UI {
         const row = this.createBookRow(book);
         list.appendChild(row)
     }
+    // Metoda za izmenu postojece knjige
+    editBook(editBtn) {
+        const row = editBtn.closest('tr');
+        document.getElementById('edit-title').value = row.cells[0].textContent;
+        document.getElementById('edit-author').value = row.cells[1].textContent;
+        document.getElementById('edit-isbn').value = row.cells[2].textContent;
+        // Metoda za priakzivanje modalnog prozora
+        document.getElementById('editModal').style.display = 'block';
+    }
+
+    // Metoda za proveru da li knjiga vec postoji
     isBookExists(isbn) {
         const list = document.getElementById('book-list');
         const rows = list.querySelectorAll('tr');
         return Array.from(rows).some(row => row.cells[2].textContent === isbn);
     }
-    // kreiranje metode showAlert klase UI
+    // Kreiranje metode showAlert klase UI
     showAlert(message, className) {
         const div = document.createElement('div');
-        // dodajemo className
+        // Dodajemo className
         div.className = `alert ${className}`;
         div.appendChild(document.createTextNode(message));
         const container = document.querySelector('.container');
         const form = document.querySelector('#book-form');
-        // dodavanje alerta
+        // Dodavanje alerta
         container.insertBefore(div, form);
         setTimeout(function(){
             document.querySelector('.alert').remove();
@@ -54,14 +65,18 @@ class UI {
             target.parentElement.parentElement.remove()
         }
     };
-    // kreiranje metode clearFields
+    // Kreiranje metode clearFields
     clearFields() {
         document.getElementById('title').value = '';
         document.getElementById('author').value = '';
         document.getElementById('isbn').value = '';
     };
+    // Metoda za zatvaranje modalnog prozora
+    closeModal() {
+        document.getElementById('editModal').style.display = 'none';
+    }
 };
-// eventListener na formu
+// EventListener na formu 
 document.getElementById('book-form').addEventListener('submit', (e) => {
     e.preventDefault(); // Sprecavamo refresh
     const title = document.getElementById('title').value;
@@ -83,16 +98,18 @@ document.getElementById('book-form').addEventListener('submit', (e) => {
     }
 
 })
-// Listener za delete
+// Listener za delete i izmenu knjiga
 document.getElementById('book-list').addEventListener('click', e => {
     e.preventDefault();
     if (e.target.className === 'delete') {
         ui.deleteBook(e.target);
         Storage.removeBook(e.target.parentElement.previousElementSibling.textContent);        
         ui.showAlert('Uspesno ste obrisali knjigu!', 'success')
+    } else if (e.target.className === 'edit') {
+        ui.editBook(e.target);
     }
     
-})
+});
 // Local Storage
 class Storage {
     static getBooks() {
@@ -114,6 +131,11 @@ class Storage {
 }
 // Globalni UI(optimizacija)
 const ui = new UI();
+
+// eListener za zatvaranje modalnog prozora
+document.querySelector('.close').addEventListener('click', () => {
+    ui.closeModal();
+});
 
 // eListener za storage
 document.addEventListener('DOMContentLoaded', () => {
