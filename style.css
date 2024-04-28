@@ -76,11 +76,72 @@ body {
 /* Stil za zatvaranje modala */
 .close {
     float: right; /* Dugme za zatvaranje u gornjem desnom uglu */
-    font-size: 28px; /* Veliko i lako za klik */
+    font-size: 28px;
     cursor: pointer;
     color: black;
 }
 
 .close:hover {
     color: #e60000; /* Promena boje kada je mis preko dugmeta */
+}
+/* Stil za edit i delete */
+.edit, .delete {
+    padding: 8px 15px;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.edit {
+    background-color: #007bff;
+    color: white;
+}
+
+.delete {
+    background-color: #ff4d4d;
+    color: white;
+    margin-left: 60%;
+}
+
+.edit:hover {
+    background-color: #0056b3;
+}
+
+.delete:hover {
+    background-color: #cc0000;
+}
+
+/* Responsive */
+/* Stilovi za mobilne uređaje (osnovni stil) */
+.edit, .delete {
+    padding: 6px;
+    font-size: 8px;
+    margin: 3px;
+    width: 3px;
+}
+
+/* Srednji uređaji (tableti) */
+@media (min-width: 768px) {
+    .edit, .delete {
+        padding: 10px;
+        font-size: 14px; /* Veća veličina fonta za veće ekrane */
+    }
+}
+
+/* Veliki uređaji (desktop) */
+@media (min-width: 992px) {
+    .edit, .delete {
+        padding: 12px;
+        font-size: 16px; /* Još veća veličina fonta za desktop */
+    }
+}
+
+/* Ekstra veliki uređaji (veliki desktop) */
+@media (min-width: 1200px) {
+    .edit, .delete {
+        padding: 15px;
+        font-size: 18px; /* Povećanje za veoma velike ekrane */
+    }
 }
