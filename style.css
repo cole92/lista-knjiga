@@ -32,7 +32,6 @@ body {
     display: none; /* Sakriven po defaultu */
     justify-content: center;
     align-items: center;
-    display: flex;
     overflow-y: auto; /* Omogucava skrolovanje modala ako je sadrzaj veci od ekrana */
 }
 /* Stil za unutrasnji kontejner modala */

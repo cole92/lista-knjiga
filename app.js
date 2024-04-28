@@ -75,6 +75,16 @@ class UI {
     closeModal() {
         document.getElementById('editModal').style.display = 'none';
     }
+    // Metoda za update knjige na UI
+    updateBookOnUI(isbn, newTitle, newAuthor) {
+        const rows = document.querySelectorAll('#book-list tr');
+        rows.forEach(row => {
+            if (row.cells[2].textContent === isbn) {
+                row.cells[0].textContent = newTitle;
+                row.cells[1].textContent = newAuthor; 
+            }
+        });
+    }
 };
 // EventListener na formu 
 document.getElementById('book-form').addEventListener('submit', (e) => {
@@ -127,6 +137,16 @@ class Storage {
         const books = Storage.getBooks();
         const filteredBooks = books.filter(book => book.isbn !== isbn);
         localStorage.setItem('books', JSON.stringify(filteredBooks));
+    };
+
+    static updateBook(isbn, newTitle, newAuthor) {
+        let books = Storage.getBooks();
+        const index = books.findIndex(book => book.isbn === isbn);
+        if (index !== -1) {
+            books[index].title = newTitle;
+            books[index].author = newAuthor;
+            localStorage.setItem('books', JSON.stringify(books));
+        }
     }
 }
 // Globalni UI(optimizacija)
@@ -142,9 +162,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const books = Storage.getBooks();
     books.forEach(book => ui.addBookToList(new Book(book.title, book.author, book.isbn)));
 });
+// eListener na formu za izmenu knjige
+document.getElementById('edit-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const isbn = document.getElementById('edit-isbn').value;
+    const newTitle = document.getElementById('edit-title').value;
+    const newAuthor = document.getElementById('edit-author').value;
+
+// Pozivanje metoda za azuriranje knjiga u skladistu i na UI
+    Storage.updateBook(isbn, newTitle, newAuthor);
+    ui.updateBookOnUI(isbn, newTitle, newAuthor);
+// Sakrivanje modalnog i prikaz poruke
+    document.getElementById('editModal').style.display = 'none';
+    ui.showAlert('Knjiga je azurirana', 'success');
+});
 
 
 /*  
     - Poboljšanje korisničkog interfejsa:
-        Razmislite o dodavanju funkcionalnosti za uređivanje postojećih unosa knjiga.
+        Trimovanje malih i velikih slova
         Poboljšajte stilizaciju alert divova; na primer, da poruka bude bliža korisniku kada se pojavi, može se dodati tranzicija ili animacija.  */
