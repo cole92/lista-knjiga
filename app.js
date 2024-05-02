@@ -180,5 +180,5 @@ document.getElementById('edit-form').addEventListener('submit', (e) => {
 
 /*  
     - Poboljšanje korisničkog interfejsa:
-        Trimovanje malih i velikih slova
+        Trimovanje malih i velikih slova, potrvrda brisanja knjige.
         Poboljšajte stilizaciju alert divova; na primer, da poruka bude bliža korisniku kada se pojavi, može se dodati tranzicija ili animacija.  */
