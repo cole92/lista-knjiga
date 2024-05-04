@@ -112,31 +112,61 @@ body {
 .delete:hover {
     background-color: #cc0000;
 }
+table {
+    width: 100%;
+    border-collapse: collapse; /* Uklanja prostor između ćelija */
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left; /* Poravnanje teksta u ćelijama */
+}
 
 /* Responsive */
 /* Stilovi za mobilne uređaje (osnovni stil) */
 @media (max-width: 575px) {
     .edit, .delete {
         padding: 5px;
-        font-size: 5px; 
+        font-size: 15px; 
     }
     .delete {
         margin-left: 5%;
     }
     #book-list td {
-        font-size: 5px; 
-    }
-    #title {
-        width: 50%;
-    }
-    #author {
-        width: 50%;
+        font-size: 15px; 
     }
     .u-full-width { 
+        width: 100%;
+    }
+    thead { 
+        display: none; /* Sakrij zaglavlje tabele */
+    }
+
+    tr { 
+        margin-bottom: 10px; /* Dodaj razmak između redova */
+        display: block; /* Čini svaki red blokovskim elementom */
+        border-bottom: 2px solid #ddd; /* Dodaj granicu na dnu svakog reda */
+    }
+
+    td {
+        display: block; /* Čini svaku ćeliju blokovskim elementom */
+        text-align: end; /* Poravnanje teksta na desnu stranu */
+        position: relative; /* Omogućava pozicioniranje labele */
+        padding-left: 50%; /* Dodaje prostor za labelu */
+    }
+
+    td::before {
+        content: attr(data-label); /* Koristi data-label za prikaz naziva kolone */
+        position: absolute;
+        left: 0;
         width: 50%;
-        display: flex;
-    }   
-}
+        padding-right: 10px; /* Dodaj malo prostora pre teksta */
+        white-space: nowrap; /* Sprečava prelamanje teksta */
+        text-align: left; /* Poravnanje teksta na levo */
+        font-weight: bold; /* Podebljaj tekst */
+    }
+}   
+
 /* Mali uredjaji */
 @media (min-width: 576px) {
     .edit, .delete {
