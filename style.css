@@ -114,56 +114,57 @@ body {
 }
 table {
     width: 100%;
-    border-collapse: collapse; /* Uklanja prostor između ćelija */
+    border-collapse: collapse; /* Uklanja prostor između celija */
 }
 th, td {
     border: 1px solid #ddd;
     padding: 8px;
-    text-align: left; /* Poravnanje teksta u ćelijama */
+    text-align: left;
 }
 
 /* Responsive */
 /* Stilovi za mobilne uređaje (osnovni stil) */
 @media (max-width: 575px) {
+    #book-list tr td:last-child a {
+        padding: 0 30px; 
+    }
     .edit, .delete {
-        padding: 5px;
         font-size: 15px; 
     }
     .delete {
         margin-left: 5%;
     }
     #book-list td {
-        font-size: 15px; 
+        font-size: 20px; 
     }
     .u-full-width { 
         width: 100%;
     }
     thead { 
-        display: none; /* Sakrij zaglavlje tabele */
+        display: none; /* Sakrivam zaglavlje tabele */
     }
 
     tr { 
-        margin-bottom: 10px; /* Dodaj razmak između redova */
-        display: block; /* Čini svaki red blokovskim elementom */
-        border-bottom: 2px solid #ddd; /* Dodaj granicu na dnu svakog reda */
+        margin-bottom: 10px;
+        display: block; 
+        border-bottom: 2px solid #ddd;
     }
 
     td {
-        display: block; /* Čini svaku ćeliju blokovskim elementom */
-        text-align: end; /* Poravnanje teksta na desnu stranu */
-        position: relative; /* Omogućava pozicioniranje labele */
-        padding-left: 50%; /* Dodaje prostor za labelu */
+        display: block;
+        text-align: center;
+        position: relative;
     }
 
     td::before {
-        content: attr(data-label); /* Koristi data-label za prikaz naziva kolone */
+        content: attr(data-label);
         position: absolute;
         left: 0;
         width: 50%;
-        padding-right: 10px; /* Dodaj malo prostora pre teksta */
-        white-space: nowrap; /* Sprečava prelamanje teksta */
-        text-align: left; /* Poravnanje teksta na levo */
-        font-weight: bold; /* Podebljaj tekst */
+        padding-right: 10px; 
+        white-space: nowrap; 
+        text-align: left; 
+        font-weight: bold;
     }
 }   
 
@@ -171,35 +172,36 @@ th, td {
 @media (min-width: 576px) {
     .edit, .delete {
         padding: 4px;
-        font-size: 10px; 
+        font-size: 12px; 
     }
     .delete {
-        margin-left: 10%;
+        margin-left: 40%;
     }
     #book-list td {
-        font-size: 10px;
+        font-size: 12px;
+        
     }
 }
 
 /* Srednji uređaji (tableti) */
 @media (min-width: 768px) {
     .edit, .delete {
-        padding: 8px;
+        padding: 7px;
         font-size: 12px; 
     }
     .delete {
-        margin-left: 25%;
+        margin-left: 50%;
     }
 }
 
 /* Veliki uređaji (desktop) */
 @media (min-width: 992px) {
     .edit, .delete {
-        padding: 10px;
+        padding: 8px;
         font-size: 14px; 
     }
     .delete {
-        margin-left: 40%;
+        margin-left: 57%;
     }
     #book-list td {
         font-size: 16px; 
@@ -209,11 +211,11 @@ th, td {
 /* Ekstra veliki uređaji (veliki desktop) */
 @media (min-width: 1200px) {
     .edit, .delete {
-        padding: 10px;
+        padding: 8px;
         font-size: 14px; 
     }
     .delete {
-        margin-left: 50%;
+        margin-left: 65%;
     }
     #book-list td {
         font-size: 16px; 
