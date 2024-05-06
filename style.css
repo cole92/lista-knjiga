@@ -20,3 +20,234 @@ body {
 .error{
     background: red;
 }
+/* Modalni prozor */
+#editModal {
+    padding-top: 5%;
+    position: fixed; /* Fiksirano pozicioniranje preko celog sadrzaja */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: none; /* Sakriven po defaultu */
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto; /* Omogucava skrolovanje modala ako je sadrzaj veci od ekrana */
+}
+/* Stil za unutrasnji kontejner modala */
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 50%; 
+
+   /* max-width: 600px; */
+
+    margin: auto; 
+
+    min-width: 300px; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); 
+    position: relative;
+}
+/* Stil za naslove i inpute unutar modala */
+.modal-content h2,
+.modal-content label,
+.modal-content input[type="text"] {
+    margin-top: 10px;
+    width: 100%;
+    color: black;
+}
+
+/* Stil za dugmad unutar modala */
+.modal-content button {
+    background-color: #2c646d;
+    color: white;
+    border: none;
+    padding: 3px;
+    margin-top: 20px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.modal-content button:hover {
+    background-color: #3e8890;
+}
+
+/* Stil za zatvaranje modala */
+.close {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+    color: black;
+}
+
+.close:hover {
+    color: #e60000;
+}
+/* Stil za edit i delete */
+.edit, .delete {
+    padding: 8px 15px;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.edit {
+    background-color: #007bff;
+    color: white;
+}
+
+.delete {
+    background-color: #ff4d4d;
+    color: white;
+    margin-left: 60%;
+}
+
+.edit:hover {
+    background-color: #0056b3;
+}
+
+.delete:hover {
+    background-color: #cc0000;
+}
+table {
+    width: 100%;
+    border-collapse: collapse; /* Uklanja prostor između celija */
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+/* Dodavanje specificnog stila za prvu kolonu naslova */
+th:first-child, td:first-child {
+    padding-left: 10px; 
+}
+
+
+/* Responsive */
+/* Stilovi za mobilne uređaje (osnovni stil) */
+@media (max-width: 575px) {
+    #book-list tr td:last-child a {
+        padding: 0 30px; 
+    }
+    .edit, .delete {
+        font-size: 15px; 
+    }
+    .delete {
+        margin-left: 5%;
+    }
+    #book-list td {
+        font-size: 20px; 
+    }
+    .u-full-width { 
+        width: 100%;
+    }
+    thead { 
+        display: none; /* Sakrivam zaglavlje tabele */
+    }
+
+    tr { 
+        margin-bottom: 10px;
+        display: block; 
+        border-bottom: 2px solid #ddd;
+    }
+
+    td {
+        display: block;
+        text-align: center;
+        position: relative;
+    }
+
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-right: 10px; 
+        white-space: nowrap; 
+        text-align: left; 
+        font-weight: bold;
+    }
+}   
+
+/* Mali uredjaji */
+@media (min-width: 576px) {
+    .edit, .delete {
+        padding: 4px;
+        font-size: 12px; 
+    }
+    .delete {
+        margin-left: 40%;
+    }
+    #book-list td {
+        font-size: 12px;
+        
+    }
+    td {
+        white-space: normal;
+        word-wrap: break-word;
+    }
+    .td1 {
+        max-width: 80px;
+    }
+    .td2 {
+        max-width: 80px;
+    }
+    .td3 {
+        max-width: 80px;
+    }
+    .tdLast {
+        min-width: 100px;
+    }
+}
+
+/* Srednji uređaji (tableti) */
+@media (min-width: 768px) {
+    .edit, .delete {
+        padding: 7px;
+        font-size: 12px; 
+    }
+    .delete {
+        margin-left: 50%;
+    }
+    .tdLast {
+        min-width: 100px;
+    }
+}
+
+/* Veliki uređaji (desktop) */
+@media (min-width: 992px) {
+    .edit, .delete {
+        padding: 8px;
+        font-size: 14px; 
+    }
+    .delete {
+        margin-left: 57%;
+    }
+    #book-list td {
+        font-size: 16px; 
+    }
+    .tdLast {
+        min-width: 100px;
+    }
+}
+
+/* Ekstra veliki uređaji (veliki desktop) */
+@media (min-width: 1200px) {
+    .edit, .delete {
+        padding: 8px;
+        font-size: 14px; 
+    }
+    .delete {
+        margin-left: 65%;
+    }
+    #book-list td {
+        font-size: 16px; 
+    }
+    .tdLast {
+        min-width: 110px;
+    }
+}
