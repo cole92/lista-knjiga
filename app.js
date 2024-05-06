@@ -13,10 +13,10 @@ class UI {
     createBookRow(book) {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${book.title}</td>
-            <td>${book.author}</td>
-            <td>${book.isbn}</td>
-            <td>
+            <td class='td1'>${book.title}</td>
+            <td class='td2'>${book.author}</td>
+            <td class='td3'>${book.isbn}</td>
+            <td class='tdLast'>
             <a href="#" class="edit">Izmeni</a>
             <a href="" class="delete">X</a>
             </td>

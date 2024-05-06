@@ -14,15 +14,16 @@
         <form  id="book-form">
             <div>
                 <label for="title">Naslov</label>
-                <input type="text" id="title" class="u-full-width">
+                <input type="text" id="title" class="u-full-width" maxlength="20">
             </div>
             <div>
                 <label for="author">Autor</label>
-                <input type="text" id="author" class="u-full-width">
+                <input type="text" id="author" class="u-full-width" maxlength="20">
             </div>
             <div>
                 <label for="isbn">ISBN</label>
-                <input type="text" id="isbn" class="u-full-width">
+                <input type="text" id="isbn" maxlength="13" minlength="13" pattern="\d{13}" title="Unestite 13 cifara ISBN-a" placeholder="ISBN mora da ima 13 cifara" required class="u-full-width">
+
             </div>
             <div>
                 <input type="submit" value="submit" class="u-full-width">
@@ -35,7 +36,7 @@
                     <th>Naslov</th>
                     <th>Autor</th>
                     <th>ISBN</th>
-                    <th></th>
+                    <th>OPERACIJE</th>
                 </tr>
             </thead>
             <tbody id="book-list">
@@ -50,10 +51,10 @@
             <span class="close">&times;</span>
             <form id="edit-form">
                 <label for="edit-title">Izmenite Unose</label>
-                <input type="text" id="edit-title" name="title">
+                <input type="text" id="edit-title" name="title" maxlength="20">
 
                 <label for="edit-author">Autor</label>
-                <input type="text" id="edit-author" name="author">
+                <input type="text" id="edit-author" name="author" maxlength="20">
 
                 <label for="edit-isbn">ISBN</label>
                 <input type="text" id="edit-isbn" name="isbn" disabled>
