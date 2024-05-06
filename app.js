@@ -32,7 +32,7 @@ class UI {
     // Metoda za izmenu postojece knjige
     editBook(editBtn) {
         const row = editBtn.closest('tr');
-        document.getElementById('edit-title').value = row.cells[0].textContent;
+        document.getElementById('edit-title').value = row.cells[0].textContent; 
         document.getElementById('edit-author').value = row.cells[1].textContent;
         document.getElementById('edit-isbn').value = row.cells[2].textContent;
         // Metoda za priakzivanje modalnog prozora
@@ -59,12 +59,21 @@ class UI {
             document.querySelector('.alert').remove();
         }, 3000);
     };
-    // Kreiranje metode deleteBook
-    deleteBook(target) {
-        if(target.className === 'delete') {
-            target.parentElement.parentElement.remove()
+
+   // Kreiranje metode deleteBook
+   deleteBook(target) {
+    if (target.className === 'delete') {
+        // Dodavanje prozora za potvrdu pre brisanja knjige
+        if (confirm("Da li ste sigurni da zelite da obrisete ovu knjigu?")) {
+            target.parentElement.parentElement.remove();
+            Storage.removeBook(target.parentElement.previousElementSibling.textContent);        
+            ui.showAlert('Knjiga je uspesno obrisana!', 'success');
+        } else {
+            ui.showAlert('Brisanje knjige je otkazano.');
         }
-    };
+    }
+};
+
     // Kreiranje metode clearFields
     clearFields() {
         document.getElementById('title').value = '';
@@ -113,12 +122,9 @@ document.getElementById('book-list').addEventListener('click', e => {
     e.preventDefault();
     if (e.target.className === 'delete') {
         ui.deleteBook(e.target);
-        Storage.removeBook(e.target.parentElement.previousElementSibling.textContent);        
-        ui.showAlert('Uspesno ste obrisali knjigu!', 'success')
     } else if (e.target.className === 'edit') {
         ui.editBook(e.target);
     }
-    
 });
 // Local Storage
 class Storage {
@@ -176,9 +182,3 @@ document.getElementById('edit-form').addEventListener('submit', (e) => {
     document.getElementById('editModal').style.display = 'none';
     ui.showAlert('Knjiga je azurirana', 'success');
 });
-
-
-/*  
-    - Poboljšanje korisničkog interfejsa:
-        Trimovanje malih i velikih slova, potrvrda brisanja knjige.
-        Poboljšajte stilizaciju alert divova; na primer, da poruka bude bliža korisniku kada se pojavi, može se dodati tranzicija ili animacija.  */
